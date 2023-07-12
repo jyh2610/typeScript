@@ -1,6 +1,17 @@
-class Block {
-  constructor(private data: string) {}
-  static hello() {
-    return "Hello";
+interface BlockShape {
+  hash: string;
+  prevHash: string;
+  height: number;
+  data: string;
+}
+class Block implements BlockShape {
+  public hash: string;
+  constructor(
+    public prevHash: string,
+    public height: number,
+    public data: string
+  ) {
+    this.hash = Block.calculateHash(prevHash, height, data);
   }
+  static calculateHash(hash: string, height: number, data: string) {}
 }
